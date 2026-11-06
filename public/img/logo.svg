@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" fill="none">
+  <!-- Placeholder logo. Replace this file (or point brand.logo in site.config.js to your own file). -->
+  <circle cx="30" cy="30" r="26" stroke="#8A6F5C" stroke-width="1.5"/>
+  <path d="M30 13c4 7 4 13 0 20-4-7-4-13 0-20z M30 33c-6-4-11-4-16-1 4 5 10 6 16 1z M30 33c6-4 11-4 16-1-4 5-10 6-16 1z" fill="#C9A98B"/>
+  <line x1="30" y1="33" x2="30" y2="46" stroke="#8A6F5C" stroke-width="1.5"/>
+  <text x="68" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="25" letter-spacing="1" fill="#2B2522">Lumière</text>
+  <text x="69" y="49" font-family="Helvetica, Arial, sans-serif" font-size="9.5" letter-spacing="4.2" fill="#6F6560">AESTHETICS</text>
+</svg>
