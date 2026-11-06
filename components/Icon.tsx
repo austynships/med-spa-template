@@ -22,6 +22,9 @@ const paths = {
 
 export type IconName = keyof typeof paths;
 
+/** Icons meant for service cards. */
+export const ICON_NAMES: IconName[] = ["syringe", "drop", "sparkle", "sun", "leaf", "heart", "star", "shield", "clock"];
+
 export function Icon({ name, size = 22 }: { name: IconName; size?: number }) {
   return (
     <svg

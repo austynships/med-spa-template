@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 import { Icon } from "./Icon";
 import { Logo, tel } from "./ui";
 
-export function Header() {
+export function Header({ site }: { site: SiteConfig }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -21,7 +21,7 @@ export function Header() {
   return (
     <header className={`header${scrolled ? " is-scrolled" : ""}${open ? " menu-open" : ""}`}>
       <div className="container header__inner">
-        <Logo where="header" />
+        <Logo site={site} where="header" />
         <nav className="nav" aria-label="Main">
           {site.nav.map((n) => <a key={n.link} href={n.link} onClick={close}>{n.label}</a>)}
           <a className="btn btn--primary nav__book" href={site.contact.bookingUrl} onClick={close}>{site.bookButtonText}</a>

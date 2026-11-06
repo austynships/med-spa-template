@@ -1,10 +1,12 @@
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 import { Icon } from "../Icon";
 import { Photo, SectionHead } from "../ui";
 
-export function Services() {
+type P = { site: SiteConfig };
+
+export function Services({ site }: P) {
   const s = site.services;
-  if (s.show === false) return null;
+  if (s.show === false || s.items.length === 0) return null;
   return (
     <section className="section" id="services">
       <div className="container">
@@ -24,7 +26,7 @@ export function Services() {
   );
 }
 
-export function About() {
+export function About({ site }: P) {
   const a = site.about;
   if (a.show === false) return null;
   return (
@@ -36,21 +38,21 @@ export function About() {
         <div className="about__body reveal">
           <SectionHead {...a} center={false} />
           {a.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-          {a.checklist && (
+          {a.checklist && a.checklist.length > 0 && (
             <ul className="checklist">
               {a.checklist.map((c) => <li key={c}><Icon name="check" size={18} /><span>{c}</span></li>)}
             </ul>
           )}
-          {a.button && <a className="btn btn--primary" href={a.button.link}>{a.button.text}</a>}
+          {a.button && a.button.text && <a className="btn btn--primary" href={a.button.link}>{a.button.text}</a>}
         </div>
       </div>
     </section>
   );
 }
 
-export function Team() {
+export function Team({ site }: P) {
   const t = site.team;
-  if (t.show === false) return null;
+  if (t.show === false || t.members.length === 0) return null;
   return (
     <section className="section" id="team">
       <div className="container">

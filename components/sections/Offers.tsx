@@ -1,10 +1,12 @@
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 import { Icon } from "../Icon";
 import { SectionHead } from "../ui";
 
-export function Memberships() {
+type P = { site: SiteConfig };
+
+export function Memberships({ site }: P) {
   const m = site.memberships;
-  if (m.show === false) return null;
+  if (m.show === false || m.plans.length === 0) return null;
   return (
     <section className="section section--soft" id="memberships">
       <div className="container">
@@ -27,16 +29,16 @@ export function Memberships() {
   );
 }
 
-export function Testimonials() {
+export function Testimonials({ site }: P) {
   const t = site.testimonials;
-  if (t.show === false) return null;
+  if (t.show === false || t.items.length === 0) return null;
   return (
     <section className="section" id="reviews">
       <div className="container">
         <SectionHead {...t} />
         <div className="reviews__grid">
           {t.items.map((r) => (
-            <figure className="review reveal" key={r.name}>
+            <figure className="review reveal" key={r.name + r.quote.slice(0, 20)}>
               <span className="stars">★★★★★</span>
               <blockquote>“{r.quote}”</blockquote>
               <figcaption>
@@ -51,9 +53,9 @@ export function Testimonials() {
   );
 }
 
-export function Faq() {
+export function Faq({ site }: P) {
   const f = site.faq;
-  if (f.show === false) return null;
+  if (f.show === false || f.items.length === 0) return null;
   return (
     <section className="section section--soft" id="faq">
       <div className="container">
@@ -71,7 +73,7 @@ export function Faq() {
   );
 }
 
-export function Cta() {
+export function Cta({ site }: P) {
   const c = site.cta;
   if (c.show === false) return null;
   return (

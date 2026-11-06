@@ -307,3 +307,7 @@ p { margin: 0; }
   .faq__item summary { font-size: 21px; }
   .faq__item p { padding-right: 0; }
 }
+
+/* Wrapper that carries the theme colors and fonts */
+.site { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; }
+.no-reveal .reveal { opacity: 1; transform: none; transition: none; }

@@ -1,9 +1,9 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 
-export function ContactForm() {
+export function ContactForm({ site }: { site: SiteConfig }) {
   const { formAction, submitText } = site.contactSection;
 
   // No form service set: open the visitor's email app with the details filled in.

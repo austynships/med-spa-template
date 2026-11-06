@@ -1,8 +1,10 @@
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 import { Icon } from "../Icon";
 import { Photo } from "../ui";
 
-export function Announcement() {
+type P = { site: SiteConfig };
+
+export function Announcement({ site }: P) {
   const a = site.announcement;
   if (a.show === false) return null;
   return (
@@ -13,7 +15,7 @@ export function Announcement() {
   );
 }
 
-export function Hero() {
+export function Hero({ site }: P) {
   const h = site.hero;
   return (
     <section className="hero" id="hero">
@@ -26,7 +28,7 @@ export function Hero() {
             {h.primaryButton && <a className="btn btn--primary" href={h.primaryButton.link}>{h.primaryButton.text}</a>}
             {h.secondaryButton && <a className="btn btn--ghost" href={h.secondaryButton.link}>{h.secondaryButton.text}</a>}
           </div>
-          {h.rating && (
+          {h.rating && h.rating.score && (
             <div className="hero__rating">
               <span className="stars">★★★★★</span>
               <span><strong>{h.rating.score}</strong> {h.rating.label}</span>
@@ -44,8 +46,8 @@ export function Hero() {
   );
 }
 
-export function Stats() {
-  if (site.stats.show === false) return null;
+export function Stats({ site }: P) {
+  if (site.stats.show === false || site.stats.items.length === 0) return null;
   return (
     <section className="stats" id="stats">
       <div className="container stats__grid">

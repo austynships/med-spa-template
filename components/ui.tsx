@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { site } from "@/site.config";
+import type { SiteConfig } from "@/lib/site-types";
 
 /** A photo, or a soft color backdrop when no image is set. Parent must be position: relative. */
 export function Photo({ src, alt, label, sizes, priority }: { src: string; alt: string; label: string; sizes: string; priority?: boolean }) {
   if (!src) return <div className="placeholder"><span>{label}</span></div>;
-  return <Image src={src} alt={alt} fill sizes={sizes} priority={priority} style={{ objectFit: "cover" }} />;
+  // Images from other websites (e.g. while previewing a scraped site) skip Next's optimizer.
+  const remote = /^https?:\/\//.test(src);
+  return <Image src={src} alt={alt} fill sizes={sizes} priority={priority} unoptimized={remote} style={{ objectFit: "cover" }} />;
 }
 
 export function SectionHead({ eyebrow, title, intro, center = true }: { eyebrow?: string; title: string; intro?: string; center?: boolean }) {
@@ -17,7 +19,7 @@ export function SectionHead({ eyebrow, title, intro, center = true }: { eyebrow?
   );
 }
 
-export function Logo({ where }: { where: "header" | "footer" }) {
+export function Logo({ site, where }: { site: SiteConfig; where: "header" | "footer" }) {
   const b = site.brand;
   if (!b.logo) return <a className="logo" href="#top"><span className="logo__text">{b.name}</span></a>;
   return (
